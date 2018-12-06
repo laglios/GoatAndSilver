@@ -48,6 +48,7 @@ Helgen[global.ATK]=global.PARTY_STAT[#global.HELGEN,global.ATK];
 Helgen[global.DEF]=global.PARTY_STAT[#global.HELGEN,global.DEF];
 
 //init Amber
+Amber = noone
 if(global.PARTY[1]!=noone){
     Amber[global.HP]=global.PARTY_STAT[#global.AMBER,global.HP];
     Amber[global.MAXHP]=global.PARTY_STAT[#global.AMBER,global.MAXHP];
@@ -56,6 +57,7 @@ if(global.PARTY[1]!=noone){
     Amber[global.DEF]=global.PARTY_STAT[#global.AMBER,global.DEF];
 }
 //init guest
+char1 = noone
 if(global.PARTY[2]!=noone){
     char1[global.HP]=global.PARTY_STAT[#global.PARTY[2],global.HP];
     char1[global.MAXHP]=global.PARTY_STAT[#global.PARTY[2],global.MAXHP];
@@ -77,7 +79,8 @@ pos_chary[0]=(room_height-112)/3.3+180
 //HUD
 health_timer=0
 health_anim=0
-
+menu_timer=0
+menu_timer_big=0
 </string>
           </argument>
         </arguments>
@@ -110,7 +113,10 @@ if(health_timer%7==0){
 if(health_anim==5)
     health_anim=0
 
-    
+//menu
+if(menu_timer&lt;16)
+    menu_timer++;
+
 //-----------turn control-------------//
 if(turn%2==0){//player's turn
     //if char need movement
@@ -230,22 +236,17 @@ draw_sprite_ext(spr_dialogue_box,0,view_xview[0],view_yview[0],2,2,0,c_white,1)
 //-------------------Menu----------------//
 if(turn%2==0 and not obj_Camera_battle.mov){
 if(cursor_position==0){
-    draw_rectangle_colour(obj_battle_helgen.x+50,obj_battle_helgen.y-sprite_get_height(spr_hg_walk_right),
-        obj_battle_helgen.x+150,obj_battle_helgen.y-sprite_get_height(spr_hg_walk_right)+100,c_black,c_gray,c_white,c_gray,false)
-    draw_rectangle(obj_battle_helgen.x+50,obj_battle_helgen.y-sprite_get_height(spr_hg_walk_right),
-        obj_battle_helgen.x+150,obj_battle_helgen.y-sprite_get_height(spr_hg_walk_right)+100,true)
-    draw_sprite_ext(Faceset_Hg,0,view_xview[0]+13,360,2,2,0,c_white,1)
-
+    scr_box(obj_battle_helgen.x + 50 - view_xview[0],obj_battle_helgen.y - 70- view_yview[0],80,90)
+    scr_box(obj_battle_helgen.x + 150 - view_xview[0],obj_battle_helgen.y - 70- view_yview[0],300,100)
+    draw_sprite_ext(spr_cursor,0,obj_battle_helgen.x-30,obj_battle_helgen.y-sprite_get_height(spr_hg_walk_right)/2,1,1,-90,c_white,1)
 }else if cursor_position==1{
-    draw_rectangle_colour(obj_battle_amber.x+20,obj_battle_amber.y-sprite_get_height(spr_Character),
-        obj_battle_amber.x+300,obj_battle_amber.y-sprite_get_height(spr_Character)+100,c_black,c_gray,c_white,c_gray,false)
-    draw_rectangle(obj_battle_amber.x+20,obj_battle_amber.y-sprite_get_height(spr_Character),
-        obj_battle_amber.x+300,obj_battle_amber.y-sprite_get_height(spr_Character)+100,true)
+    scr_box(obj_battle_amber.x + 50 - view_xview[0],obj_battle_amber.y - 70- view_yview[0],80,90)
+    scr_box(obj_battle_amber.x + 150 - view_xview[0],obj_battle_amber.y - 70- view_yview[0],300,100)
+    draw_sprite_ext(spr_cursor,0,obj_battle_amber.x-30,obj_battle_amber.y-sprite_get_height(spr_Character)/2,1,1,-90,c_white,1)
 }else if cursor_position==2{
-    draw_rectangle_colour(obj_battle_char1.x+20,obj_battle_char1.y-sprite_get_height(spr_Character),
-        obj_battle_char1.x+300,obj_battle_char1.y-sprite_get_height(spr_Character)+100,c_black,c_gray,c_white,c_gray,false)
-    draw_rectangle(obj_battle_char1.x+20,obj_battle_char1.y-sprite_get_height(spr_Character),
-        obj_battle_char1.x+300,obj_battle_char1.y-sprite_get_height(spr_Character)+100,true)
+    scr_box(obj_battle_char1.x + 50 - view_xview[0],obj_battle_char1.y - 70- view_yview[0],80,90)
+    scr_box(obj_battle_char1.x + 150 - view_xview[0],obj_battle_char1.y - 70- view_yview[0],300,100)
+    draw_sprite_ext(spr_cursor,0,obj_battle_char1.x-30,obj_battle_char1.y-sprite_get_height(spr_Character)/2,1,1,-90,c_white,1)
 }
 }
 

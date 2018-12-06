@@ -18,6 +18,10 @@
         <sprite>sprites\Health_bar_Amber_fluid</sprite>
         <sprite>sprites\Health_bar_Amber</sprite>
       </sprites>
+      <sprites name="Box">
+        <sprite>sprites\spr_box</sprite>
+      </sprites>
+      <sprite>sprites\spr_cursor</sprite>
     </sprites>
     <sprites name="char_Helgen">
       <sprite>sprites\spr_helgen_walk_front_smal</sprite>
@@ -34,6 +38,9 @@
   <scripts name="scripts">
     <scripts name="Base Function">
       <script>scripts\json_load.gml</script>
+    </scripts>
+    <scripts name="Box_display">
+      <script>scripts\scr_box.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -56,6 +63,7 @@
         <object>objects\obj_battle_helgen</object>
         <object>objects\obj_battle_amber</object>
         <object>objects\obj_battle_char1</object>
+        <object>objects\obj_battle_opponent</object>
       </objects>
     </objects>
   </objects>
