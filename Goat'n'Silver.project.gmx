@@ -27,10 +27,15 @@
       <sprite>sprites\spr_helgen_walk_front_smal</sprite>
       <sprite>sprites\spr_hg_walk_front</sprite>
       <sprite>sprites\spr_hg_walk_right</sprite>
-      <sprite>sprites\Faceset_Hg</sprite>
     </sprites>
     <sprites name="Faceset">
       <sprite>sprites\spr_dialogue_box</sprite>
+      <sprite>sprites\faceset_Hg</sprite>
+      <sprite>sprites\faceset_Amber</sprite>
+      <sprite>sprites\faceset_Ag</sprite>
+      <sprite>sprites\faceset_S</sprite>
+      <sprite>sprites\faceset_Illness</sprite>
+      <sprite>sprites\___</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -41,10 +46,11 @@
     </scripts>
     <scripts name="Box_display">
       <script>scripts\scr_box.gml</script>
+      <script>scripts\scr_display_stats.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\pixel</font>
+    <font>fonts\ft_pixel</font>
   </fonts>
   <objects name="objects">
     <objects name="Brains">

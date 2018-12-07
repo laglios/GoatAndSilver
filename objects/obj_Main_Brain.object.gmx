@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>window_set_caption("Goat and Silver") // to set window's title
+draw_set_font(ft_pixel)
 //--------------------------------
 //-----------global var-----------
 //--------------------------------
@@ -35,11 +36,17 @@ global.RIGHT=1
 global.UP=2
 global.LEFT=3
 
+//faceset position
+global.facex=12
+global.facey=360
+
 //Characters
 numberChar=3
 global.HELGEN = 0
 global.AMBER = 1
-global.BAMB = 2
+global.SORIA = 2
+global.COTTON = 3
+global.URIA = 4
 
 //Data name
 numberStat=7
@@ -47,9 +54,10 @@ global.LEVEL=0
 global.HP=1
 global.MAXHP=2
 global.MP=3
-global.ATK=4
-global.DEF=5
-global.EXP=6
+global.MAXMP=4
+global.ATK=5
+global.DEF=6
+global.EXP=7
 
 //party
 global.PARTY_STAT=ds_grid_create(numberChar,numberStat)
@@ -62,28 +70,31 @@ global.PARTY_SIZE=3
 global.PARTY_STAT[#global.HELGEN,global.LEVEL]=1
 global.PARTY_STAT[#global.HELGEN,global.HP]=3
 global.PARTY_STAT[#global.HELGEN,global.MAXHP]=4
-global.PARTY_STAT[#global.HELGEN,global.MP]=10
+global.PARTY_STAT[#global.HELGEN,global.MP]=9
+global.PARTY_STAT[#global.HELGEN,global.MAXMP]=10
 global.PARTY_STAT[#global.HELGEN,global.ATK]=9999
 global.PARTY_STAT[#global.HELGEN,global.DEF]=9999
 global.PARTY_STAT[#global.HELGEN,global.EXP]=0
 
 //stat init amber
 global.PARTY_STAT[#global.AMBER,global.LEVEL]=1
-global.PARTY_STAT[#global.AMBER,global.HP]=20
+global.PARTY_STAT[#global.AMBER,global.HP]=7
 global.PARTY_STAT[#global.AMBER,global.MAXHP]=20
 global.PARTY_STAT[#global.AMBER,global.MP]=14
+global.PARTY_STAT[#global.AMBER,global.MAXMP]=14
 global.PARTY_STAT[#global.AMBER,global.ATK]=7
 global.PARTY_STAT[#global.AMBER,global.DEF]=5
 global.PARTY_STAT[#global.AMBER,global.EXP]=0
 
-//stat init bamb
-global.PARTY_STAT[#global.BAMB,global.LEVEL]=1
-global.PARTY_STAT[#global.BAMB,global.HP]=13
-global.PARTY_STAT[#global.BAMB,global.MAXHP]=13
-global.PARTY_STAT[#global.BAMB,global.MP]=18
-global.PARTY_STAT[#global.BAMB,global.ATK]=10
-global.PARTY_STAT[#global.BAMB,global.DEF]=4
-global.PARTY_STAT[#global.BAMB,global.EXP]=0
+//stat init Soria
+global.PARTY_STAT[#global.SORIA,global.LEVEL]=1
+global.PARTY_STAT[#global.SORIA,global.HP]=13
+global.PARTY_STAT[#global.SORIA,global.MAXHP]=13
+global.PARTY_STAT[#global.SORIA,global.MP]=10
+global.PARTY_STAT[#global.SORIA,global.MAXMP]=10
+global.PARTY_STAT[#global.SORIA,global.ATK]=10
+global.PARTY_STAT[#global.SORIA,global.DEF]=4
+global.PARTY_STAT[#global.SORIA,global.EXP]=0
 
 //------------------------
 //----------item----------

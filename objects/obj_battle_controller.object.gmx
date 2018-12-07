@@ -35,7 +35,7 @@ max_cursor = global.PARTY_SIZE - 1
 
 //debug
 global.PARTY[1]=global.AMBER
-global.PARTY[2]=global.BAMB
+global.PARTY[2]=global.SORIA
 
 //list of char
 character= noone;
@@ -44,6 +44,7 @@ character= noone;
 Helgen[global.HP]=global.PARTY_STAT[#global.HELGEN,global.HP];
 Helgen[global.MAXHP]=global.PARTY_STAT[#global.HELGEN,global.MAXHP];
 Helgen[global.MP]=global.PARTY_STAT[#global.HELGEN,global.MP];
+Helgen[global.MAXMP]=global.PARTY_STAT[#global.HELGEN,global.MAXMP];
 Helgen[global.ATK]=global.PARTY_STAT[#global.HELGEN,global.ATK];
 Helgen[global.DEF]=global.PARTY_STAT[#global.HELGEN,global.DEF];
 
@@ -53,17 +54,19 @@ if(global.PARTY[1]!=noone){
     Amber[global.HP]=global.PARTY_STAT[#global.AMBER,global.HP];
     Amber[global.MAXHP]=global.PARTY_STAT[#global.AMBER,global.MAXHP];
     Amber[global.MP]=global.PARTY_STAT[#global.AMBER,global.MP];
+    Amber[global.MAXMP]=global.PARTY_STAT[#global.AMBER,global.MAXMP];
     Amber[global.ATK]=global.PARTY_STAT[#global.AMBER,global.ATK];
     Amber[global.DEF]=global.PARTY_STAT[#global.AMBER,global.DEF];
 }
 //init guest
-char1 = noone
+Char1 = noone
 if(global.PARTY[2]!=noone){
-    char1[global.HP]=global.PARTY_STAT[#global.PARTY[2],global.HP];
-    char1[global.MAXHP]=global.PARTY_STAT[#global.PARTY[2],global.MAXHP];
-    char1[global.MP]=global.PARTY_STAT[#global.PARTY[2],global.MP];
-    char1[global.ATK]=global.PARTY_STAT[#global.PARTY[2],global.ATK];
-    char1[global.DEF]=global.PARTY_STAT[#global.PARTY[2],global.DEF]
+    Char1[global.HP]=global.PARTY_STAT[#global.PARTY[2],global.HP];
+    Char1[global.MAXHP]=global.PARTY_STAT[#global.PARTY[2],global.MAXHP];
+    Char1[global.MP]=global.PARTY_STAT[#global.PARTY[2],global.MP];
+    Char1[global.MAXMP]=global.PARTY_STAT[#global.PARTY[2],global.MAXMP];
+    Char1[global.ATK]=global.PARTY_STAT[#global.PARTY[2],global.ATK];
+    Char1[global.DEF]=global.PARTY_STAT[#global.PARTY[2],global.DEF]
 }
 
 //player's turn position
@@ -175,6 +178,7 @@ if(turn%2==0){//player's turn
 if(not obj_Camera_battle.mov){
     if(keyboard_check_pressed(vk_down)){
         cursor_position++;
+        menu_timer=0
         if cursor_position &gt; max_cursor
             cursor_position=0;
     }
@@ -182,6 +186,7 @@ if(not obj_Camera_battle.mov){
         cursor_position--;
         if cursor_position &lt; 0
             cursor_position = max_cursor;
+        menu_timer=0
     }
 }
 }else{//opponents' turn
@@ -212,6 +217,7 @@ if(not obj_Camera_battle.mov){
           <argument>
             <kind>1</kind>
             <string>//-------------HEALTH-----------//
+draw_set_color(c_black)
 draw_rectangle(view_xview[0],0,view_xview[0]+19,116,false)
 draw_sprite(Health_bar_fluid,health_anim,view_xview[0],(116-(116*(Helgen[global.HP]/Helgen[global.MAXHP]))))
 
@@ -238,14 +244,17 @@ if(turn%2==0 and not obj_Camera_battle.mov){
 if(cursor_position==0){
     scr_box(obj_battle_helgen.x + 50 - view_xview[0],obj_battle_helgen.y - 70- view_yview[0],80,90)
     scr_box(obj_battle_helgen.x + 150 - view_xview[0],obj_battle_helgen.y - 70- view_yview[0],300,100)
+    scr_display_stats(0)
     draw_sprite_ext(spr_cursor,0,obj_battle_helgen.x-30,obj_battle_helgen.y-sprite_get_height(spr_hg_walk_right)/2,1,1,-90,c_white,1)
 }else if cursor_position==1{
     scr_box(obj_battle_amber.x + 50 - view_xview[0],obj_battle_amber.y - 70- view_yview[0],80,90)
     scr_box(obj_battle_amber.x + 150 - view_xview[0],obj_battle_amber.y - 70- view_yview[0],300,100)
+    scr_display_stats(1)
     draw_sprite_ext(spr_cursor,0,obj_battle_amber.x-30,obj_battle_amber.y-sprite_get_height(spr_Character)/2,1,1,-90,c_white,1)
 }else if cursor_position==2{
     scr_box(obj_battle_char1.x + 50 - view_xview[0],obj_battle_char1.y - 70- view_yview[0],80,90)
     scr_box(obj_battle_char1.x + 150 - view_xview[0],obj_battle_char1.y - 70- view_yview[0],300,100)
+    scr_display_stats(2)
     draw_sprite_ext(spr_cursor,0,obj_battle_char1.x-30,obj_battle_char1.y-sprite_get_height(spr_Character)/2,1,1,-90,c_white,1)
 }
 }

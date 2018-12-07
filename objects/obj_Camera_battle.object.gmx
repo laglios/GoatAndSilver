@@ -69,13 +69,17 @@ if(mov==1){
     if(direct==0){
         if(x&gt;0)
             x-=2
-        else
+        else{
             mov=0
+            obj_battle_controller.menu_timer=0
+        }
     }else{
         if(x&lt;room_width-1)
             x+=2
-        else
+        else{
             mov=0
+            obj_battle_controller.menu_timer=0
+        }
     }
 }
 </string>
